@@ -4,20 +4,19 @@ function handleReady() {
   // console.log("jquery is loaded!")
 console.log('jquery is loaded');
   // listener(s)
-  
   $('#addInput').on('click', ); // make a function for + button
   $('#subtractInput').on('click', ); //make a function for - button
   $('#multiplyInput').on('click', ); //make a function for * button
   $('#divideInput').on('click', ); // make a function for / button
   $('#calculateInput').on('click', ); // make a function for = button
-
+render();
 };
 
 //render function created to 
 function render(){
 console.log('in the render function');
     
-}
+};
 
 
 // Client-server client side functions:

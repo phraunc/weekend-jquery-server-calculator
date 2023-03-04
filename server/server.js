@@ -1,6 +1,8 @@
-// Require express - gives us a function
-const express = require('express');
 
+//const sets up the server
+    // Require express - gives us a function
+const express = require('express');
+const bodyParser = require('body-parser')
 // Create an instance of express by calling the function returned above - gives us an object
 const app = express();
 const port = 5000;
@@ -14,7 +16,9 @@ app.listen(port, () => {
 });
 
 // This must be added before GET & POST routes.
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}));
+
+
 
 // Server side functions
 // 	variableChanger() - change a variable to +,-,*,/ per button pushed
