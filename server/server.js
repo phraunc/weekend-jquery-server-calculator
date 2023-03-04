@@ -15,3 +15,12 @@ app.listen(port, () => {
 
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
+
+// Server side functions
+// 	variableChanger() - change a variable to +,-,*,/ per button pushed
+// 	runCalculation() - run actual calculation
+	
+// Server side global variables
+// 	currentOperator
+// 	currentAnswer
+// 	calculationArray
