@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./public/vendor/jquery.js"></script>
+    <script src="./public/scripts/client.js"></script>
+    <link rel="stylesheet" href="./public/styles/styles.css">
+    <title>Jquery Server Calculator</title>
+</head>
+
+<h1>Calculate This 'ish</h1>
+
+<body>
+    <div id="inputArea">
+       <!-- This is where the numbers go for calculation to hold values-->
+       <!-- included is all buttons for mathamatical buttons -->
+        <input id="numberOneInput" class="inputFormField" type="number" placeholder="0">
+        <button id="addInput">+</button>
+        <button id="subtractInput">-</button>
+        <button id="multiplyInput">*</button>
+        <button id="divideInput">/</button>
+        <input id="numberTwoInput" class="inputFormField" type="number" placeholder="0">
+        <!-- button to submit -->
+        <p></p>
+        <button id="calculateInput">Calculate</button>
+      </div>
+<div>
+
+<!-- this is where the history of answers will go -->
+
+</div>
+
+
+
+
+</body>
+
+</html>
+
+
+
+<!--
+     include 2 input elements for values
+    include a +, -, * and / button for mathamatical methods
+    include a 'calculate' button that will send the values 
+    to the server
+    include a 'c' button that will clear the user input fields
+    create a 'div' element to store the historical data of the solution
+    ** the history of the equations will still exist even after refreshing the page.
+ -->
