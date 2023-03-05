@@ -2,7 +2,7 @@
 //const sets up the server
     // Require express - gives us a function
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 // Create an instance of express by calling the function returned above - gives us an object
 const app = express();
 const port = 5000;
@@ -17,6 +17,28 @@ app.listen(port, () => {
 
 // This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}));
+//   ---------------  The above is all that is needed to ensure server is good -------
+
+//Routes
+let numberInput = {
+
+  inputOne: 1,
+  inputTwo: 2
+};
+
+//GET
+app.use('/number', (req, res)=>{
+  res.send(numberInput);
+});
+
+
+
+
+
+
+
+
+
 
 
 
