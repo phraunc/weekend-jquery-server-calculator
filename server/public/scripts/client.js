@@ -1,3 +1,4 @@
+
 $(document).ready(handleReady);
 
 function handleReady() {
@@ -8,8 +9,18 @@ console.log('jquery is loaded');
   $('#subtractInput').on('click', subtractInput); //make a function for - button
   $('#multiplyInput').on('click', multiplyInput); //make a function for * button
   $('#divideInput').on('click', divideInput); // make a function for / button
-  //$('#calculateInput').on('click', );// make a function for = button
+  $('#calculateInput').on('click', equals);// make a function for = button
 getNumber();
+numbersInput();
+};
+
+let enteredNumbers = {};
+
+function numbersInput(){
+
+  enteredNumbers.numberOneInput = $('#numberOneInput').val();
+  enteredNumbers.numberTwoInput = $('#numberTwoInput').val();
+
 
 };
 
@@ -20,112 +31,90 @@ $.ajax({
   method:'GET'
 }).then((response)=>{
   console.log('calculator data', response)});
-//   renderAnswer();
- }
+  //renderAnswer();//append to the DOM
+}
 
 
-function addInput(num1, num2){
+function addInput(){
   console.log('in addInput function');
+  numbersInput();
 //made a function that adds numbers together
-
- num1 = $('#numberOneInput').val();
- num2 = $('#numberTwoInput').val();
- 
- if( num1 && num2){
+enteredNumbers.operator = '+';
 $.ajax({
-method:'POST',
-url: '/add',
-
-  data: {
-     numberInputOne: num1,
-     numberInputTwo: num2
-  }
-}).then(function(response){
-  // renderAnswer();
+  url: '/add',
+  method:'POST'
+}).then((response) => {
+  console.log('In POST for addInput', response);
   getNumber();
 });
- }
-}//Ends addInput Function
+}//end addInput GET function
 
-function subtractInput(num1, num2){
-console.log('in subtractInput function');
- num1 = $('#numberOneInput').val();
- num2 = $('#numberTwoInput').val();
  
- if( num1 && num2){
+
+function equals(){
 $.ajax({
 method:'POST',
 url: '/',
-
-  data: {
-    numberInputOne: num1,
-    numberInputTwo: num2
-  }
+data: enteredNumbers
 }).then(function(response){
-  // renderAnswer();
+  console.log('post is good');
   getNumber();
+  //renderAnswer();
 });
- }
-}//Ends subtractInput function
+}//Ends equals function
 
-function multiplyInput(num1, num2){
+function subtractInput(){
+console.log('in subtractInput function');
+//made a function that adds numbers together
+enteredNumbers.operator = '-';
+$.ajax({
+  url: '-',
+  mothod:'POST'
+}).then((respons)=>{
+  console.log('using subtractInput function', respons)});
+ };
+//Ends subtractInput function
+
+function multiplyInput(){
 console.log('in multiplyInput function');
-  num1 = $('#numberOneInput').val();
-  num2 = $('#numberTwoInput').val();
-  
-  if( num1 && num2){
- $.ajax({
- method:'POST',
- url: '/',
- 
-   data: {
-    numberInputOne: num1,
-    numberInputTwo: num2
-   }
- }).then(function(response){
-  // renderAnswer();
-   getNumber();
- });
-}
-}//Ends MultiplyInput function
-function divideInput(num1, num2){
+//made a function that adds numbers together
+enteredNumbers.operator = '*';
+$.ajax({
+  url:'/multiply',
+  method: 'POST'
+}).then((response)=>{
+  console.log('Giving multiply POST')});
+ };//Ends MultiplyInput function
+
+function divideInput(){
 console.log('in divideInput Function');
-  num1 = $('#numberOneInput').val();
-  num2 = $('#numberTwoInput').val();
-  
-  if( num1 && num2){
- $.ajax({
- method:'POST',
- url: '/',
- 
-   data: {
-    numberInputOne: num1,
-    numberInputTwo: num2
-   }
- }).then(function(response){
-  // renderAnswer();
-   getNumber();
- });
-}
-}//Ends divideInput Function
+//made a function that adds numbers together
+enteredNumbers.operator = '/';
+$.ajax({
+  url: 'divide',
+  method: 'POST'
+}).then((response)=>{
+  console.log('using divide POST', response)});
+ };//Ends divideInput Function
+
 
 //render function created to 
-// function renderAnswer(){
-//   //testing to see if funciton works
-// console.log('in the render function');
+function renderAnswer(){
+  //testing to see if funciton works
+console.log('in the render function');
   
-// //clearing out inputs
-// $('#numberOneInput').empty();
-// $('#numberTwoInput').empty();
-// $('#answerInput').empty();
+//clearing out inputs
+$('#numberOneInput').empty();
+$('#numberTwoInput').empty();
+$('#answerInput').empty();
 
-// for(response of renderAnswer){
-// $('#answerRenderArea').append(`
-// <li>${response.numberInputOne} operation ${response.numberInputTwo}=${response.answeInput}</li>
+for( response of renderAnswer ){//having issues with finding a good for loop
+$('#answerRenderArea').append(`
+<li>${response.numberInputOne} operation ${response.numberInputTwo}=${response.answeInput}</li>
 
-// `)
-// };
-// };//end render function
+`)
+};
+};//end render function
 
 
 // Client-server client side functions:
@@ -165,3 +154,5 @@ console.log('in divideInput Function');
 // 	currentOperator
 // 	currentAnswer
 // 	calculationArray
+
+//I have spent countless hours on this program to get things inputed.  I have used other expamples as well as other cohort members for guidance. 
