@@ -23,65 +23,65 @@ app.use(bodyParser.urlencoded({extended:true}));
 //object for what i need to input for the results i want.
 let mathEquation = [
     {
-    firstInput: '',
-    secondInput: '',
-    operation: '',
-    answer: '',
-  }];
-
-
-
+    firstInput: 2,
+    secondInput: 3,
+    operation: '+',
+    answer: 5
+  },
+  {
+    firstInput: 7,
+    secondInput: 5,
+    operation: '-',
+    answer: 2
+  },
+];
 
 //GET
 app.get('/number', (req, res)=>{
+  console.log('Here are the numbers', mathEquation);
   res.send(mathEquation);
 });
 
 
+//POST
+app.post('/add', (req, res) => { 
+  
 
-app.post('/', (req, res)=>{
-  console.log('in the post,',req.body);
-mathEquation.push(req.body);
+ numOne= req.body.firstInput,
+ numTwo= req.body.secondInput,
+ newAnswer= req.body.answer
 
-let incomingFirstInput = req.body.firstInput;
-let incomingSecondInput = req.body.secondInput;
-let incomingOperation = req.body.operation;
-let incomingAnswer = req.body.answer;
-
-console.log('incomingFirstInput', incomingFirstInput);
-console.log('incomingSecondInput', incomingSecondInput);
-console.log('incomingOperation', incomingOperation);
-console.log('incomingAnswer', incomingAnswer);
-
-const newMathEquation = {firstInput:incomingFirstInput,
-secondInput: incomingSecondInput, operation: incomingOperation,
-answer: incomingAnswer};
-
+newMathEquation = numOne+numTwo
 
 mathEquation.push(newMathEquation);
+res.send(201);
+});
+
+
+// mathEquation.push(newMathEquation);
 //this is where the actual math needs to happen. 
-  res.send(201);
-});
+//   res.send(201);
+// });
 
-app.post('/add', (req, res)=>{
-  console.log('POST for /add to use add button');
+// app.post('/add', (req, res)=>{
+//   console.log('POST for /add to use add button');
 
 
-});
+// });
 
-app.post('/subtract', (req, res)=>{
-  console.log('POST for /subtract to use subtract button');
-  mathEquation.operation.push(req.body);
-});
+// app.post('/subtract', (req, res)=>{
+//   console.log('POST for /subtract to use subtract button');
+//   mathEquation.operation.push(req.body);
+// });
 
-app.post('/multiply', (req, res)=>{
-  console.log('POST for multiply')
-   mathEquation.operation.push(req.body)});
+// app.post('/multiply', (req, res)=>{
+//   console.log('POST for multiply')
+//    mathEquation.operation.push(req.body)});
 
-  app.post('/divide',(req, res)=>{
-    console.log('POST for divide ');
-    mathEquation.operation.push(req.body);
-  }) ;
+//   app.post('/divide',(req, res)=>{
+//     console.log('POST for divide ');
+//     mathEquation.operation.push(req.body);
+//   }) ;
 
   
 

@@ -17,14 +17,14 @@
     <div id="inputArea">
         <!-- This is where the numbers go for calculation to hold values-->
         <!-- included is all buttons for mathamatical buttons -->
-        <input id="numberOneInput" class="inputFormField" type="number" placeholder="0">
-        <button id="addInput">+</button>
-        <button id="subtractInput">-</button>
-        <button id="multiplyInput">*</button>
-        <button id="divideInput">/</button>
-        <input id="numberTwoInput" class="inputFormField" type="number" placeholder="0">
-        <button id="calculateInput">=</button>
-        <button id="delete">C</button>
+        <input id="numberOneInput"  type="number" placeholder="0">
+        <button class="operationInput">+</button>
+        <button class="operationInput">-</button>
+        <button class="operationInput">*</button>
+        <button class="operationInput">/</button>
+        <input id="numberTwoInput"  type="number" placeholder="0">
+        <button id="equalsInput">=</button>
+        <button id="deleteInput">C</button>
         <!-- button to submit -->
     </div>
     <div id="answerRenderArea">
@@ -34,8 +34,8 @@
         </ul>
     </div>
 
-    <div>
-        <ul id="previousAnswersRenderArea">
+    <div id="previousAnswersRenderArea">
+        <ul >
 
             <!-- history of previous calculations -->
 
