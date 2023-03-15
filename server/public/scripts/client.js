@@ -30,9 +30,9 @@ $.ajax({
  //Getting the recent response for answerRenderArea
  let thisResponse = response[response.length -1];//shifts to previous array, as far as I understand it..
  //same as array.shif();
- $('#answerRenderArea').text(thisResponse.answer);
+ $('#answerRenderArea').text();
  //empty the answerRenderArea
- $('#answerRenderArea').empty();
+ $('#previousAnswersRenderArea').empty();
 for (let i=0; i < response.length; i++){
   $('#previousAnswersRenderArea').append(`
   <li>${response[i].firstInput}${response[i].operation}${response[i].secondInput}=${response[i].answer}</li>
