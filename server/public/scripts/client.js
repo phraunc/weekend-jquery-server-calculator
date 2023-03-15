@@ -4,21 +4,21 @@ $(document).ready(handleReady);
 function handleReady() {
 console.log('jquery is loaded');
   // listener(s)
-  $('#addInput').on('click', addInput); // make a function for + button
-  // $('#subtractInput').on('click', subtractInput); //make a function for - button
-  // $('#multiplyInput').on('click', multiplyInput); //make a function for * button
-  // $('#divideInput').on('click', divideInput); // make a function for / button
+  $('.operationInput').on('click', allOperators);//go to a function which takes care of all operators
   $('#equalsInput').on('click', equalsFunction);// make a function for = button
 getNumber();
 // numbersInput();
 };
 
-let enteredNumbers = {
-  numOne: $('#numberOneInput').val(),
-  operation:$('.operationInput').val(),
-  numTwo: $('#numberTwoInput').val(),
-  equals: $('#equalsInput').val()
-};
+let operator = '';
+
+function allOperators(){
+console.log('lets get some operations!');
+let operatorClick = $(this).text();
+theOperator = operatorClick;
+}
+
+
 
 //function getNumber is currently working
 function getNumber(){
@@ -27,32 +27,41 @@ $.ajax({
   method:'GET'
 }).then((response)=>{
  console.log('in the GET number function', response);
-renderAnswer(response);
+ //Getting the recent response for answerRenderArea
+ let thisResponse = response[response.length -1];//shifts to previous array, as far as I understand it..
+ //same as array.shif();
+ $('#answerRenderArea').text(thisResponse.answer);
+ //empty the answerRenderArea
+ $('#answerRenderArea').empty();
+for (let i=0; i < response.length; i++){
+  $('#previousAnswersRenderArea').append(`
+  <li>${response[i].firstInput}${response[i].operation}${response[i].secondInput}=${response[i].answer}</li>
+  `)
+}
 });
 }//End getNumber Function
 
 
-function addInput(){
-  console.log('in addInput function');
-//made a function that adds numbers together
-enteredNumbers.operation = '+';
-$.ajax({
-  url: '/add',
-  method:'POST'
-}).then((response) => {
-  console.log('In POST for addInput', response);
-  getNumber();
-});
-}//end addInput GET function
 
  
 
 function equalsFunction(){
 console.log('in the equalsFunction');
+let firstInput = $('#numberOneInput').val();
+let secondInput = $('#numberTwoInput').val();
 
+$.ajax({
 
-
-
+  method: 'POST',
+  url: '/number',
+  data: {
+    firstInput: firstInput,
+    secondInput: secondInput,
+    operation: theOperator
+  }
+}).then((response)=>{
+  getNumber();//brings the results back to the getNumber function to empty the array and then append the answers to the DOM. 
+});
 }
 
 // $.ajax({
