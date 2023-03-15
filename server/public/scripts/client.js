@@ -4,6 +4,7 @@ $(document).ready(handleReady);
 function handleReady() {
 console.log('jquery is loaded');
   // listener(s)
+  $('#deleteInput').on('click', deleteFunction);
   $('.operationInput').on('click', allOperators);//go to a function which takes care of all operators
   $('#equalsInput').on('click', equalsFunction);// make a function for = button
 getNumber();
@@ -64,6 +65,11 @@ $.ajax({
 });
 }
 
+function deleteFunction(){
+console.log('trying to delete this ish');
+  $('#previousAnswersRenderArea').remove();
+
+}
 // $.ajax({
 // method:'POST',
 // url: '/number',
