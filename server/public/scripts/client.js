@@ -67,10 +67,9 @@ $.ajax({
 
 function deleteFunction(){
 console.log('trying to delete this ish');
-  $('#answerRenderArea').remove();
-  $('#previousAnswersRenderArea').remove();
-getNumber();
-}
+$('#answerRenderArea').remove();
+
+};
 
 
 
